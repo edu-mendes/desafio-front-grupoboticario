@@ -4,7 +4,7 @@ import {
     Box,
     Button
 } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 
 function PurchaseRegister({ submitData }) {
@@ -13,11 +13,12 @@ function PurchaseRegister({ submitData }) {
     const [code, setCode] = useState("");
     const [price, setPrice] = useState("");
     const [purchaseDate, setPurchaseDate] = useState("");
-    const history = useHistory();
+    
+    // const history = useHistory();
 
-    const goToRegister = () => {
-        history.push("/register")
-    }
+    // const goToRegister = () => {
+    //     history.push("/register")
+    // }
 
     return (
         <>
@@ -28,9 +29,9 @@ function PurchaseRegister({ submitData }) {
             >
                 <TextField
                     value={code}
-                    // onChange={(ev) => {
-                    //     setNome(ev.target.value);
-                    // }}
+                    onChange={(event) => {
+                        setCode(event.target.value);
+                    }}
                     name="code"
                     label="Codigo da Compra"
                     id="code"
@@ -41,9 +42,9 @@ function PurchaseRegister({ submitData }) {
 
                 <TextField
                     value={price}
-                    // onChange={(ev) => {
-                    //     setCpf(ev.target.value)
-                    // }}
+                    onChange={(event) => {
+                        setPrice(event.target.value)
+                    }}
                     // onBlur={validarCampos}
                     // name="cpf"
                     // error={!erros.cpf.valido}
@@ -57,9 +58,9 @@ function PurchaseRegister({ submitData }) {
 
                 <TextField
                     value={purchaseDate}
-                    // onChange={(event) => {
-                    //     setEmail(event.target.value);
-                    // }}
+                    onChange={(event) => {
+                        setPurchaseDate(event.target.value);
+                    }}
                     name="purchaseDate"
                     id="purchaseDate"
                     label="Data da compra"
@@ -71,7 +72,7 @@ function PurchaseRegister({ submitData }) {
                 <Box mt={2} mb={2}>
                     <Button type="submit" variant="contained" color="primary" fullWidth>
                         Cadastrar Compra
-                        </Button>
+                    </Button>
                 </Box>
 
             </form>

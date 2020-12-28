@@ -5,7 +5,8 @@ import {
     Typography,
     Link,
     Box,
-    Button
+    Button,
+    Container
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import Header from "../Header";
@@ -34,54 +35,56 @@ function RegisterPage() {
     return (
         <>
             <Header />
-            <Typography variant="h3" component="h1" align="center">Crie sua conta no Cashback</Typography>
-            <form onSubmit={handleSubmit}>
+            <Container component="article" maxWidth="sm">
+                <Typography variant="h3" component="h1" align="center">Crie sua conta no Cashback</Typography>
+                <form onSubmit={handleSubmit}>
 
-                <TextField
-                    value={email}
-                    onChange={(event) => {
-                        setEmail(event.target.value);
-                    }}
-                    name="email"
-                    id="email"
-                    label="Email"
-                    type="email"
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
-                    required
-                />
-                <TextField
-                    value={password}
-                    onChange={(event) => {
-                        setPassword(event.target.value);
-                    }}
-                    // onBlur={validarCampos}
-                    // error={!erros.senha.valido}
-                    // helperText={erros.senha.texto}
-                    name="password"
-                    id="password"
-                    label="Senha"
-                    type="password"
-                    variant="outlined"
-                    margin="normal"
-                    fullWidth
-                    required
-                />
-                <Box mt={2} mb={2}>
-                    <Button type="submit" variant="contained" color="primary" fullWidth>
-                        Criar Conta
+                    <TextField
+                        value={email}
+                        onChange={(event) => {
+                            setEmail(event.target.value);
+                        }}
+                        name="email"
+                        id="email"
+                        label="Email"
+                        type="email"
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        required
+                    />
+                    <TextField
+                        value={password}
+                        onChange={(event) => {
+                            setPassword(event.target.value);
+                        }}
+                        // onBlur={validarCampos}
+                        // error={!erros.senha.valido}
+                        // helperText={erros.senha.texto}
+                        name="password"
+                        id="password"
+                        label="Senha"
+                        type="password"
+                        variant="outlined"
+                        margin="normal"
+                        fullWidth
+                        required
+                    />
+                    <Box mt={2} mb={2}>
+                        <Button type="submit" variant="contained" color="primary" fullWidth>
+                            Criar Conta
                     </Button>
-                </Box>
+                    </Box>
 
-                <Grid container>
-                    <Grid item alignContent="space-around">
-                        <Link href="#" onClick={goToLoginPage} variant="body2">
-                            {"Já tem Conta? Faça login"}
-                        </Link>
+                    <Grid container>
+                        <Grid item alignContent="space-around">
+                            <Link href="#" onClick={goToLoginPage} variant="body2">
+                                {"Já tem Conta? Faça login"}
+                            </Link>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </form>
+                </form>
+            </Container>
         </>
     );
 }
