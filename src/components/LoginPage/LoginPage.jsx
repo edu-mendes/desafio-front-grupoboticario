@@ -26,9 +26,9 @@ function LoginPage() {
     history.push("/account")
   }
 
-  const goToPurchase = () => {
-    history.push("/purchase")
-}
+//   const goToPurchase = () => {
+//     history.push("/purchase")
+// }
 
   const handleSubmit = (event) => {
     event.preventDefault();
