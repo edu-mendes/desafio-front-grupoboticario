@@ -4,11 +4,16 @@ import {
   TextField,
   Grid,
   Link,
-  Container
+  Container,
+  Box,
+  Button
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { ButtonStyled } from "../UI"
 import Header from "../Header";
+import firebase from 'firebase/app'
+import "firebase/auth";
+import "firebase/firestore";
+
 
 
 function LoginPage() {
@@ -21,17 +26,36 @@ function LoginPage() {
     history.push("/account")
   }
 
+  const goToPurchase = () => {
+    history.push("/purchase")
+}
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+      const promise = firebase.auth().signInWithEmailAndPassword(email, password);
+      promise.catch (error => console.log(error.messege)) 
+  }
+
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+    if (firebaseUser) {
+      console.log(firebaseUser);
+      // goToPurchase();
+    }else{
+      console.log('not logged in');
+    }
+  })
+
   return (
     <>
       <Header />
       <Container component="article" maxWidth="sm">
         <Typography variant="h3" component="h1" align="center">Login</Typography>
-        <form >
+        <form onSubmit={handleSubmit}>
           <TextField
             value={email}
-            // onChange={(event) => {
-            //     setEmail(event.target.value);
-            // }}
+            onChange={(event) => {
+                setEmail(event.target.value);
+            }}
             name="email"
             id="email"
             label="Email"
@@ -43,9 +67,9 @@ function LoginPage() {
           />
           <TextField
             value={password}
-            // onChange={(ev) => {
-            //     setPassword(ev.target.value);
-            // }}
+            onChange={(event) => {
+                setPassword(event.target.value);
+            }}
             // onBlur={validarCampos}
             // error={!erros.password.valido}
             // helperText={erros.password.texto}
@@ -58,11 +82,15 @@ function LoginPage() {
             fullWidth
             required
           />
-          <ButtonStyled type="submit" variant="contained" color="primary" fullWidth onClick={goToAccount}>
+          <Box  mt={2} mb={2}>
+          <Button type="submit" variant="contained" color="primary" fullWidth>
             Entrar
-            </ButtonStyled>
+          </Button>
+          </Box>
+          
+
         </form>
-        <Grid container>
+        <Grid container margin="normal">
           <Grid item alignContent="space-around">
             <Link href="#" onClick={goToAccount} variant="body2">
               {"Ainda não tem o Cashback OBoticario? Cadastre-se"}

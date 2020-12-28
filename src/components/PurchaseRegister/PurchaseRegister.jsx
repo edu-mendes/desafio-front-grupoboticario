@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import {
     TextField,
-    Typography,
-    Container
+    Box,
+    Button
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
-import { ButtonStyled } from "../UI";
-import Header from "../Header";
 
 
-function PurchaseRegister() {
+function PurchaseRegister({ submitData }) {
 
-    const [codigo, setCodigo] = useState("");
-    const [valor, setValor] = useState("");
-    const [data, setData] = useState("");
+
+    const [code, setCode] = useState("");
+    const [price, setPrice] = useState("");
+    const [purchaseDate, setPurchaseDate] = useState("");
     const history = useHistory();
 
     const goToRegister = () => {
@@ -22,59 +21,60 @@ function PurchaseRegister() {
 
     return (
         <>
-            <Header />
-            <Container component="article" maxWidth="sm">
-                <Typography variant="h3" component="h1" align="center">Adcionar compra</Typography>
-                <form>
-                    <TextField
-                        value={codigo}
-                        // onChange={(ev) => {
-                        //     setNome(ev.target.value);
-                        // }}
-                        name="codigo"
-                        label="Codigo da Compra"
-                        id="codigo"
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                    />
+            <form onSubmit={(event) => {
+                event.preventDefault();
+                    submitData({ code, price, purchaseDate });
+            }}
+            >
+                <TextField
+                    value={code}
+                    // onChange={(ev) => {
+                    //     setNome(ev.target.value);
+                    // }}
+                    name="code"
+                    label="Codigo da Compra"
+                    id="code"
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                />
 
-                    <TextField
-                        value={valor}
-                        // onChange={(ev) => {
-                        //     setCpf(ev.target.value)
-                        // }}
-                        // onBlur={validarCampos}
-                        // name="cpf"
-                        // error={!erros.cpf.valido}
-                        // helperText={erros.cpf.texto}
-                        label="Valor da Compra"
-                        id="cpf"
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                    />
+                <TextField
+                    value={price}
+                    // onChange={(ev) => {
+                    //     setCpf(ev.target.value)
+                    // }}
+                    // onBlur={validarCampos}
+                    // name="cpf"
+                    // error={!erros.cpf.valido}
+                    // helperText={erros.cpf.texto}
+                    label="Valor da Compra"
+                    id="cpf"
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                />
 
-                    <TextField
-                        value={data}
-                        // onChange={(event) => {
-                        //     setEmail(event.target.value);
-                        // }}
-                        name="data"
-                        id="data"
-                        label="Data da compra"
-                        type="text"
-                        variant="outlined"
-                        margin="normal"
-                        fullWidth
-                        required
-                    />
-
-                    <ButtonStyled type="submit" variant="contained" color="primary" fullWidth onClick={goToRegister}>
+                <TextField
+                    value={purchaseDate}
+                    // onChange={(event) => {
+                    //     setEmail(event.target.value);
+                    // }}
+                    name="purchaseDate"
+                    id="purchaseDate"
+                    label="Data da compra"
+                    type="text"
+                    variant="outlined"
+                    margin="normal"
+                    fullWidth
+                />
+                <Box mt={2} mb={2}>
+                    <Button type="submit" variant="contained" color="primary" fullWidth>
                         Cadastrar Compra
-                </ButtonStyled>
-                </form>
-            </Container>
+                        </Button>
+                </Box>
+
+            </form>
         </>
     );
 }

@@ -1,20 +1,15 @@
 import React from "react";
-import { 
+import {
     Typography,
     Container
 } from "@material-ui/core";
-import Header from "../Header";
 
 
-function PurchaseListing() {
+function PurchaseListing({ submitData }) {
 
     return (
         <>
-            <Header />
-            <Container component="article" maxWidth="sm">
-                <Typography variant="h3" component="h1" align="center">Listagem de compras</Typography>
-            </Container>
-
+            <p>lista de compras</p>
         </>
     )
 }

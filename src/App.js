@@ -3,8 +3,7 @@ import 'fontsource-roboto';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoginPage from "./components/LoginPage";
 import RegisterPage from "./components/RegisterPage";
-import PurchaseListing from "./components/PurchaseListing";
-import PurchaseRegister from "./components/PurchaseRegister";
+import IntegrationPage from "./components/IntegrationPage";
 import { createMuiTheme } from '@material-ui/core/styles';
 import { MuiThemeProvider } from "@material-ui/core";
 
@@ -29,16 +28,8 @@ function App() {
           <Route exact path="/account">
             <RegisterPage />
           </Route>
-          <Route exact path="/register">
-            <PurchaseListing />
-          </Route>
-          <Route exact path="/purchase">
-            <PurchaseRegister />
-          </Route>
-          <Route path="/">
-            <div>
-              <h4>Opa! 404!</h4>
-            </div>
+          <Route exact path="/integration">
+            <IntegrationPage />
           </Route>
         </Switch>
       </BrowserRouter>
