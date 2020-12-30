@@ -5,6 +5,12 @@ import {
     Button
 } from "@material-ui/core";
 // import { useHistory } from "react-router-dom";
+import axios from "axios";
+
+
+const API_URL = 'http://localhost:3001';
+const PURCHASE_URL = `${API_URL}/purchase`;
+
 
 
 function PurchaseRegister({ submitData }) {
@@ -20,11 +26,27 @@ function PurchaseRegister({ submitData }) {
     //     history.push("/register")
     // }
 
+    const registerNewPurchase = async () => {
+
+        const PurchaseInformation = {
+            code,
+            price,
+            purchaseDate
+        }
+        try{
+            await axios.post(PURCHASE_URL, PurchaseInformation)
+            console.log("Okay!!!")
+        }catch (e){
+            window.alert("Error: Unable to register user.")
+        }
+    }
+
     return (
         <>
             <form onSubmit={(event) => {
                 event.preventDefault();
                     submitData({ code, price, purchaseDate });
+                    registerNewPurchase();
             }}
             >
                 <TextField

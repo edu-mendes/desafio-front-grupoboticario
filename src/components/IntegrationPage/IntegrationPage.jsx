@@ -6,26 +6,28 @@ import PurchaseListing from "../PurchaseListing";
 import Header from "../Header";
 import { makeStyles } from '@material-ui/core/styles';
 
+
 const useStyles = makeStyles((theme) => ({
     root: {
      flexDirection: "column",
     }
 }))
 
-function IntegrationPage() {
+function IntegrationPage({ executeNewData }) {
 
     const classes = useStyles();
     const [currentStage, setCurrentStage] = useState(0);
     const [infoData, setInfoData] = useState({});
 
     const pages = [
-        <PersonalInformation submitData={dataPages}/>,
-        <PurchaseRegister submitData={dataPages}/>,
+        <PersonalInformation submitData={dataPages} />,
+        <PurchaseRegister submitData={dataPages} />,
         <PurchaseListing submitData={dataPages}/>
     ];
 
     function onSubmitData(data) {
-        console.log(data)
+        executeNewData = {...data}
+        console.log(executeNewData)
     }
 
     useEffect(() => {
@@ -58,5 +60,6 @@ function IntegrationPage() {
     )
 
 }
+
 
 export default IntegrationPage;

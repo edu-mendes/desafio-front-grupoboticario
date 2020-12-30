@@ -4,6 +4,11 @@ import {
     Box,
     Button
 } from "@material-ui/core";
+import axios from "axios";
+
+
+const API_URL = 'http://localhost:3001';
+const USERS_URL = `${API_URL}/users`;
 
 
 function PersonalInformation({ submitData }) {
@@ -12,11 +17,27 @@ function PersonalInformation({ submitData }) {
     const [cpf, setCpf] = useState("");
     const [nickname, setNickname] = useState("");
 
+    const createUser = async () => {
+
+        const userInformation = {
+            name,
+            cpf,
+            nickname
+        }
+        try{
+            await axios.post(USERS_URL, userInformation)
+            console.log("Okay!!!")
+        }catch (e){
+            window.alert("Error: Unable to register user.")
+        }
+    }
+
     return (
         <>
             <form onSubmit={(event) => {
                 event.preventDefault();
                     submitData({ name, cpf, nickname });
+                    createUser();
             }}
             >
                 <TextField
@@ -71,5 +92,7 @@ function PersonalInformation({ submitData }) {
         </>
     )
 }
+
+
 
 export default PersonalInformation;

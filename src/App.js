@@ -12,12 +12,16 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: "#007E78",
+    },
+    secondary: {
+      main: "#6f967e"
     }
   },
 });
 
 
 function App() {
+
   return (
     <MuiThemeProvider theme={theme}>
       <BrowserRouter>
