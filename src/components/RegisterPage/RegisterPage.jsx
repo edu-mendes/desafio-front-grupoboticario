@@ -78,8 +78,9 @@ function RegisterPage() {
 
                     <Grid container>
                         <Grid item alignContent="space-around">
-                            <Link href="#" onClick={goToLoginPage} variant="body2">
-                                {"Já tem Conta? Faça login"}
+                        <Typography component="span" variant="h6">Já tem Conta? </Typography>
+                            <Link href="#" onClick={goToLoginPage} variant="h6">
+                                {" Faça login"}
                             </Link>
                         </Grid>
                     </Grid>

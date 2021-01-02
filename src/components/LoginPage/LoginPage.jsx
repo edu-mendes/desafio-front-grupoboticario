@@ -92,8 +92,9 @@ function LoginPage() {
         </form>
         <Grid container margin="normal">
           <Grid item alignContent="space-around">
-            <Link href="#" onClick={goToAccount} variant="body2">
-              {"Ainda não tem o Cashback OBoticario? Cadastre-se"}
+            <Typography component="span" variant="h6">Ainda não tem o Cashback OBoticario? </Typography>
+            <Link href="#" onClick={goToAccount} variant="h6">
+              {"Cadastre-se"}
             </Link>
           </Grid>
         </Grid>

@@ -1,8 +1,114 @@
 {
-    "users": [
-      { "id": 1, "name": "Eduardo Mendes Norberto", "cpf": "000.111.222-33", "nickname": "Eduardo" }
-    ],
-    "buy": [
-      { "id": 1, "code": "2457", "price": 100, "purchaseDate": "19/12/2020"}
-    ]
+  "users": [
+    {
+      "id": 1,
+      "name": "Eduardo Mendes Norberto",
+      "cpf": "000.111.222-33",
+      "nickname": "Eduardo"
+    },
+    {
+      "name": "Eduardo Mendes",
+      "cpf": "000.111.222-33",
+      "nickname": "Dudu",
+      "id": 2
+    },
+    {
+      "name": "Camillo Andrade",
+      "cpf": "777.111.222-33",
+      "nickname": "Milo",
+      "id": 3
+    },
+    {
+      "name": "jhgjgjhg",
+      "cpf": "jjlkjkl",
+      "nickname": "jjçjjçç",
+      "id": 4
+    },
+    {
+      "name": "",
+      "cpf": "",
+      "nickname": "",
+      "id": 5
+    },
+    {
+      "name": "",
+      "cpf": "",
+      "nickname": "",
+      "id": 6
+    },
+    {
+      "name": "",
+      "cpf": "",
+      "nickname": "",
+      "id": 7
+    },
+    {
+      "name": "",
+      "cpf": "",
+      "nickname": "",
+      "id": 8
+    },
+    {
+      "name": "",
+      "cpf": "",
+      "nickname": "",
+      "id": 9
+    },
+    {
+      "name": "",
+      "cpf": "",
+      "nickname": "",
+      "id": 10
+    }
+  ],
+  "purchase": [
+    {
+      "id": 1,
+      "code": "2457",
+      "price": 100,
+      "purchaseDate": "19/12/2020"
+    },
+    {
+      "code": "121457",
+      "price": "100",
+      "purchaseDate": "20-12-2020",
+      "id": 2
+    },
+    {
+      "code": "",
+      "price": "",
+      "purchaseDate": "",
+      "id": 3
+    },
+    {
+      "code": "",
+      "price": "",
+      "purchaseDate": "",
+      "id": 4
+    },
+    {
+      "code": "",
+      "price": "",
+      "purchaseDate": "",
+      "id": 5
+    },
+    {
+      "code": "",
+      "price": "",
+      "purchaseDate": "",
+      "id": 6
+    },
+    {
+      "code": "",
+      "price": "",
+      "purchaseDate": "",
+      "id": 7
+    },
+    {
+      "code": "",
+      "price": "",
+      "purchaseDate": "",
+      "id": 8
+    }
+  ]
 }
