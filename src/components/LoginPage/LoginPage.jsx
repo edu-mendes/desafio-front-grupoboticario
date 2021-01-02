@@ -26,24 +26,29 @@ function LoginPage() {
     history.push("/account")
   }
 
-//   const goToPurchase = () => {
-//     history.push("/purchase")
-// }
+  const goToIntegration = () => {
+    history.push("/integration")
+  }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-      const promise = firebase.auth().signInWithEmailAndPassword(email, password);
-      promise.catch (error => console.log(error.messege)) 
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      return goToIntegration()
+    } catch (error) {
+      console.log(error.message)
+    }
   }
 
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
-      console.log(firebaseUser);
-      // goToPurchase();
-    }else{
+      console.log("login")
+    } else {
       console.log('not logged in');
     }
   })
+
+
 
   return (
     <>
@@ -54,7 +59,7 @@ function LoginPage() {
           <TextField
             value={email}
             onChange={(event) => {
-                setEmail(event.target.value);
+              setEmail(event.target.value);
             }}
             name="email"
             id="email"
@@ -68,7 +73,7 @@ function LoginPage() {
           <TextField
             value={password}
             onChange={(event) => {
-                setPassword(event.target.value);
+              setPassword(event.target.value);
             }}
             // onBlur={validarCampos}
             // error={!erros.password.valido}
@@ -82,12 +87,12 @@ function LoginPage() {
             fullWidth
             required
           />
-          <Box  mt={2} mb={2}>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Entrar
+          <Box mt={2} mb={2}>
+            <Button type="submit" variant="contained" color="primary" fullWidth>
+              Entrar
           </Button>
           </Box>
-          
+
 
         </form>
         <Grid container margin="normal">

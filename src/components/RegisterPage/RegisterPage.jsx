@@ -20,16 +20,24 @@ function RegisterPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
-
+    
 
     const goToLoginPage = () => {
         history.push("/")
     }
 
-    const handleSubmit = (event) => {
+    const goToIntegration = () => {
+        history.push("/integration")
+    }
+
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const promise = firebase.auth().createUserWithEmailAndPassword(email, password);
-        promise.catch(error => console.log(error.messege))
+        try {
+            await firebase.auth().createUserWithEmailAndPassword(email, password);
+            return goToIntegration()
+        } catch (error) {
+            console.log(error.messege)
+        }
     }
 
     return (
@@ -78,7 +86,7 @@ function RegisterPage() {
 
                     <Grid container>
                         <Grid item alignContent="space-around">
-                        <Typography component="span" variant="h6">Já tem Conta? </Typography>
+                            <Typography component="span" variant="h6">Já tem Conta? </Typography>
                             <Link href="#" onClick={goToLoginPage} variant="h6">
                                 {" Faça login"}
                             </Link>

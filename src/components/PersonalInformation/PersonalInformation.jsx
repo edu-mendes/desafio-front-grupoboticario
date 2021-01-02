@@ -5,6 +5,9 @@ import {
     Button
 } from "@material-ui/core";
 import axios from "axios";
+import firebase from 'firebase/app';
+import "firebase/auth";
+import "firebase/firestore";
 
 
 const API_URL = 'http://localhost:3001';
@@ -17,12 +20,17 @@ function PersonalInformation({ submitData }) {
     const [cpf, setCpf] = useState("");
     const [nickname, setNickname] = useState("");
 
+    const user = firebase.auth().currentUser;
+
+
     const createUser = async () => {
 
         const userInformation = {
             name,
             cpf,
-            nickname
+            nickname,
+            email: user.email,
+            uid: user.uid
         }
         try{
             await axios.post(USERS_URL, userInformation)
@@ -85,7 +93,7 @@ function PersonalInformation({ submitData }) {
                 <Box mt={2} mb={2}>
                     <Button type="submit" variant="contained" color="primary" fullWidth>
                         Cadastrar Compra
-                        </Button>
+                    </Button>
                 </Box>
 
             </form>

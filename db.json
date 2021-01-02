@@ -1,114 +1,85 @@
 {
   "users": [
     {
-      "id": 1,
       "name": "Eduardo Mendes Norberto",
-      "cpf": "000.111.222-33",
-      "nickname": "Eduardo"
+      "cpf": "66644477722",
+      "nickname": "Du",
+      "email": "edu@rdo.com",
+      "uid": "lnlGR8OdULXxDveqKy0ASCpj8oR2",
+      "id": 1
     },
     {
-      "name": "Eduardo Mendes",
-      "cpf": "000.111.222-33",
-      "nickname": "Dudu",
+      "name": "Maria Silva",
+      "cpf": "11122233344",
+      "nickname": "Mari",
+      "email": "maria@info.com",
+      "uid": "Z78vuLrFUUaq3wFs3IbQ0UePVBK2",
       "id": 2
-    },
-    {
-      "name": "Camillo Andrade",
-      "cpf": "777.111.222-33",
-      "nickname": "Milo",
-      "id": 3
-    },
-    {
-      "name": "jhgjgjhg",
-      "cpf": "jjlkjkl",
-      "nickname": "jjçjjçç",
-      "id": 4
-    },
-    {
-      "name": "",
-      "cpf": "",
-      "nickname": "",
-      "id": 5
-    },
-    {
-      "name": "",
-      "cpf": "",
-      "nickname": "",
-      "id": 6
-    },
-    {
-      "name": "",
-      "cpf": "",
-      "nickname": "",
-      "id": 7
-    },
-    {
-      "name": "",
-      "cpf": "",
-      "nickname": "",
-      "id": 8
-    },
-    {
-      "name": "",
-      "cpf": "",
-      "nickname": "",
-      "id": 9
-    },
-    {
-      "name": "",
-      "cpf": "",
-      "nickname": "",
-      "id": 10
     }
   ],
   "purchase": [
     {
-      "id": 1,
-      "code": "2457",
-      "price": 100,
-      "purchaseDate": "19/12/2020"
+      "code": "4587",
+      "price": "200",
+      "purchaseDate": "20-12-2020",
+      "uidPurchase": "lnlGR8OdULXxDveqKy0ASCpj8oR2",
+      "percentageCashback": 0.5,
+      "status": "Aprovado",
+      "id": 1
     },
     {
-      "code": "121457",
-      "price": "100",
-      "purchaseDate": "20-12-2020",
+      "code": "7847",
+      "price": "50",
+      "purchaseDate": "25-12-2020",
+      "uidPurchase": "Z78vuLrFUUaq3wFs3IbQ0UePVBK2",
+      "percentageCashback": 0.03,
+      "status": "Aprovado",
       "id": 2
     },
     {
-      "code": "",
-      "price": "",
-      "purchaseDate": "",
+      "code": "45789524",
+      "price": "900",
+      "purchaseDate": "01-02-2021",
+      "uidPurchase": "Z78vuLrFUUaq3wFs3IbQ0UePVBK2",
+      "percentageCashback": 0.07,
+      "status": "Aprovado",
       "id": 3
     },
     {
-      "code": "",
-      "price": "",
-      "purchaseDate": "",
+      "code": "4578964",
+      "price": "250",
+      "purchaseDate": "20-12-2020",
+      "uidPurchase": "Z78vuLrFUUaq3wFs3IbQ0UePVBK2",
+      "percentageCashback": 0.05,
+      "status": "Em Validação",
       "id": 4
     },
     {
-      "code": "",
-      "price": "",
-      "purchaseDate": "",
+      "code": "8976677",
+      "price": "300",
+      "purchaseDate": "10-12-2020",
+      "uidPurchase": "Z78vuLrFUUaq3wFs3IbQ0UePVBK2",
+      "percentageCashback": 0.05,
+      "status": "Reprovado",
       "id": 5
     },
     {
-      "code": "",
-      "price": "",
-      "purchaseDate": "",
+      "code": "5475664",
+      "price": "1000",
+      "purchaseDate": "29-12-2020",
+      "uidPurchase": "Z78vuLrFUUaq3wFs3IbQ0UePVBK2",
+      "percentageCashback": 0.07,
+      "status": "Aprovado",
       "id": 6
     },
     {
-      "code": "",
-      "price": "",
-      "purchaseDate": "",
+      "code": "25147854",
+      "price": "130",
+      "purchaseDate": "02-01-2021",
+      "uidPurchase": "Z78vuLrFUUaq3wFs3IbQ0UePVBK2",
+      "percentageCashback": 0.05,
+      "status": "Aprovado",
       "id": 7
-    },
-    {
-      "code": "",
-      "price": "",
-      "purchaseDate": "",
-      "id": 8
     }
   ]
 }

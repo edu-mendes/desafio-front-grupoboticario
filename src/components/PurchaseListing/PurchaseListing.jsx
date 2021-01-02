@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     Typography,
-    Container,
-    Grid
+    Grid,
+    Paper,
+    Link
 } from "@material-ui/core";
-import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import Paper from '@material-ui/core/Paper';
+import { List, ListItem, ListItemText } from '@material-ui/core/';
+import firebase from 'firebase/app'
+import "firebase/auth";
+import "firebase/firestore";
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+
+const API_URL = 'http://localhost:3001';
+const USERS_URL = `${API_URL}/users`;
+const PURCHASE_URL = `${API_URL}/purchase`;
 
 
 const useStyles = makeStyles((theme) => ({
@@ -27,31 +39,137 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: deepPurple[500],
     },
     card: {
+        padding: theme.spacing(2),
         display: 'flex',
-        flexWrap: 'wrap',
+        overflow: 'auto',
+        flexDirection: 'column',
+        marginTop: '6vh',
         '& > *': {
-            width: theme.spacing(16),
-            height: theme.spacing(16),
+
+            width: theme.spacing(33),
+
+        },
+    },
+    container: {
+        marginTop: '6vh',
+    },
+    seeMore: {
+        marginTop: theme.spacing(2),
+    },
+    paper: {
+        padding: theme.spacing(2),
+        display: 'flex',
+        overflow: 'auto',
+        flexDirection: 'column',
+        marginTop: '3vh',
+        '& > *': {
+            width: theme.spacing(18),
         },
     },
 }));
 
 
-function PurchaseListing({ submitData }) {
+
+
+function PurchaseListing({ handleBack }) {
+
+    const [fetchUser, setFetchUser] = useState([]);
+    const [fetchPurchase, setFetchPurchase] = useState([]);
 
     const classes = useStyles();
 
+    const user = firebase.auth().currentUser;
+
+    const loadDataUsers = async () => {
+        const response = await fetch(`${USERS_URL}?uid=${user.uid}`)
+        const data = await response.json()
+        setFetchUser(data)
+    }
+
+    useEffect(() => {
+        loadDataUsers();
+    }, []);
+
+    console.log(fetchUser)
+
+    const loadDataPurchase = async () => {
+        const response = await fetch(`${PURCHASE_URL}?uidPurchase=${user.uid}`)
+        const data = await response.json()
+        setFetchPurchase(data)
+    }
+
+    useEffect(() => {
+        loadDataPurchase();
+    }, []);
+
+    console.log(fetchPurchase)
+
     return (
-        <Grid alignContent="space-between" justify="space-between">
-            <div className={classes.root}>
-                <Avatar>H</Avatar>
-                <Avatar className={classes.orange}>N</Avatar>
-                <Avatar className={classes.purple}>OP</Avatar>
-                <Typography component="subtitle1">Email</Typography>
-            </div>
-            <div className={classes.card}>
-                <Paper elevation={3} />
-            </div>
+        <Grid
+            className={classes.container}
+            container
+            direction="column"
+            justify="space-evenly"
+            alignItems="center"
+            spacing={3}
+        >
+            <Grid item xs={12} md={8}>
+                {fetchUser.map(usr => (
+
+                    <Paper variant="outlined" className={classes.card}>
+                        <div className={classes.root}>
+                            <Avatar className={classes.purple}>{usr.nickname.slice(0, 1)}</Avatar>
+                        </div>
+                        <List>
+                            <ListItem>
+                                <ListItemText primary="Nome" secondary={usr.name} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary="CPF" secondary={usr.cpf} />
+                            </ListItem>
+                            <ListItem>
+                                <ListItemText primary="Email" secondary={usr.email} />
+                            </ListItem>
+                        </List>
+                    </Paper>
+                ))
+                }
+
+                <Grid item xs={12}>
+                    <Paper className={classes.paper}>
+                        <Typography component="h2" variant="h6" color="primary" gutterBottom>Compras Cadastradas</Typography>
+                        <Table size="small">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell><strong>Código</strong></TableCell>
+                                    <TableCell><strong>Valor</strong></TableCell>
+                                    <TableCell><strong>Data&nbsp;&nbsp;</strong></TableCell>
+                                    <TableCell><strong>% de Cashback</strong></TableCell>
+                                    <TableCell><strong>Valor do Cashback</strong></TableCell>
+                                    <TableCell align="right"><strong>Status</strong></TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {fetchPurchase.map((row) => (
+                                    <TableRow key={row.id}>
+                                        <TableCell>{row.code}</TableCell>
+                                        <TableCell>{Number(row.price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</TableCell>
+                                        <TableCell>{row.purchaseDate}</TableCell>
+                                        <TableCell>{Math.floor(row.percentageCashback * 100)}%</TableCell>
+                                        <TableCell>{(Number(row.price) * row.percentageCashback).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</TableCell>
+                                        <TableCell align="right">{row.status}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                        <div className={classes.seeMore}>
+                            <Link color="primary" href="#" onClick={handleBack}>
+                                Cadastrar Outra Compra
+                        </Link>
+                        </div>
+                    </Paper>
+                </Grid>
+            </Grid>
         </Grid>
     )
 }

@@ -1,29 +1,19 @@
 import React from "react";
-import styled from "styled-components"
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import firebase from 'firebase/app';
+import "firebase/auth";
+import "firebase/firestore";
+import { useHistory } from "react-router-dom";
 
 
-
-const StyledHeader = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 15vw;
-  height: 10vh;
-  align-items: center;
-  background-color: #6f967e;
-  margin-bottom: 5vh;
-`;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,13 +32,27 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
 
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
+  const [authorization, setAuthorization] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const history = useHistory();
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+
+  const goToLoginPage = () => {
+    history.push("/")
+  }
+
+
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+    if (firebaseUser) {
+      setAuthorization(true)
+    } else {
+      console.log('not logged in');
+    }
+  })
+
+  const user = firebase.auth().currentUser;
+
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -59,23 +63,20 @@ const Header = () => {
   };
 
 
+  const handleChange = (event) => {
+    firebase.auth().signOut()
+    setAuthorization(event.target.checked);
+    goToLoginPage();
+  }
+
   return (
-     <div className={classes.root}>
-      <FormGroup>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
+    <div className={classes.root}>
       <AppBar position="static" color="secondary">
         <Toolbar>
-          {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton> */}
           <Typography variant="h6" className={classes.title}>
-            
+            Cashback
           </Typography>
-          {auth && (
+          {authorization && (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -101,8 +102,8 @@ const Header = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={handleClose}>Não é o {user.email}, clique em sair</MenuItem>
+                <MenuItem onClick={handleClose}><PowerSettingsNewIcon /><span onClick={handleChange}>&nbsp;Sair</span></MenuItem>
               </Menu>
             </div>
           )}

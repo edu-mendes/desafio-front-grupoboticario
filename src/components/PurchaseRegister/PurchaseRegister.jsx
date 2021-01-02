@@ -4,8 +4,10 @@ import {
     Box,
     Button
 } from "@material-ui/core";
-// import { useHistory } from "react-router-dom";
 import axios from "axios";
+import firebase from 'firebase/app';
+import "firebase/auth";
+import "firebase/firestore";
 
 
 const API_URL = 'http://localhost:3001';
@@ -20,18 +22,33 @@ function PurchaseRegister({ submitData }) {
     const [price, setPrice] = useState("");
     const [purchaseDate, setPurchaseDate] = useState("");
     
-    // const history = useHistory();
+    
+    const user = firebase.auth().currentUser;
+    
+    let percentage 
 
-    // const goToRegister = () => {
-    //     history.push("/register")
-    // }
+    const calculatePercentage = () =>{
+        if(price < 100){
+            percentage = 0.03
+        }if(price >= 100 & price < 500) {
+            percentage = 0.05
+        }if(price >= 500 ){
+            percentage = 0.07
+        }
+    }
+
+    const things = ['Em Validação', 'Reprovado', 'Aprovado'];
+    const thing = things[Math.floor(Math.random()*things.length)];
 
     const registerNewPurchase = async () => {
 
         const PurchaseInformation = {
             code,
             price,
-            purchaseDate
+            purchaseDate,
+            uidPurchase: user.uid,
+            percentageCashback: percentage,
+            status: thing,
         }
         try{
             await axios.post(PURCHASE_URL, PurchaseInformation)
@@ -46,6 +63,7 @@ function PurchaseRegister({ submitData }) {
             <form onSubmit={(event) => {
                 event.preventDefault();
                     submitData({ code, price, purchaseDate });
+                    calculatePercentage()
                     registerNewPurchase();
             }}
             >
