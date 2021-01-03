@@ -80,6 +80,15 @@
       "percentageCashback": 0.05,
       "status": "Aprovado",
       "id": 7
+    },
+    {
+      "code": "54784",
+      "price": "105",
+      "purchaseDate": "29-12-2020",
+      "uidPurchase": "lnlGR8OdULXxDveqKy0ASCpj8oR2",
+      "percentageCashback": 0.05,
+      "status": "Em Validação",
+      "id": 8
     }
   ]
 }
