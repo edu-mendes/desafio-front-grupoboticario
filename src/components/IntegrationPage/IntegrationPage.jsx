@@ -5,11 +5,13 @@ import PurchaseRegister from "../PurchaseRegister";
 import PurchaseListing from "../PurchaseListing";
 import Header from "../Header";
 import { makeStyles } from '@material-ui/core/styles';
+import InitialStepper from "../InitialStepper";
+
 
 
 const useStyles = makeStyles((theme) => ({
     root: {
-     flexDirection: "column",
+        flexDirection: "column",
     }
 }))
 
@@ -20,14 +22,14 @@ function IntegrationPage({ executeNewData }) {
     const [infoData, setInfoData] = useState({});
 
     const pages = [
+        <InitialStepper handleSkip={handleSkip} nextStage={nextStage}/>,
         <PersonalInformation submitData={dataPages} />,
         <PurchaseRegister submitData={dataPages} />,
-        <PurchaseListing submitData={dataPages}/>
+        <PurchaseListing submitData={dataPages} handleBack={handleBack} />
     ];
 
     function onSubmitData(data) {
-        executeNewData = {...data}
-        console.log(executeNewData)
+        executeNewData = { ...data }
     }
 
     useEffect(() => {
@@ -45,11 +47,20 @@ function IntegrationPage({ executeNewData }) {
         setCurrentStage(currentStage + 1);
     }
 
+    function handleBack() {
+        setCurrentStage((currentStage) => currentStage - 1);
+    };
+
+    function handleSkip() {
+        setCurrentStage((currentStage) => currentStage + 3);
+    };
+
     return (
         <>
             <Header />
-            <Container maxWidth="sm">
+            <Container maxWidth="lg">
                 <Stepper className={classes.root} activeStep={currentStage}>
+                    <Step><StepLabel>Tela Inicial</StepLabel></Step>
                     <Step><StepLabel>Dados Pessoais</StepLabel></Step>
                     <Step><StepLabel>Dados da Compra</StepLabel></Step>
                     <Step><StepLabel>Lista de Compras</StepLabel></Step>

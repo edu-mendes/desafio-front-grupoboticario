@@ -15,7 +15,6 @@ import "firebase/auth";
 import "firebase/firestore";
 
 
-
 function LoginPage() {
 
   const [email, setEmail] = useState("");
@@ -26,25 +25,21 @@ function LoginPage() {
     history.push("/account")
   }
 
-//   const goToPurchase = () => {
-//     history.push("/purchase")
-// }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-      const promise = firebase.auth().signInWithEmailAndPassword(email, password);
-      promise.catch (error => console.log(error.messege)) 
+  const goToIntegration = () => {
+    history.push("/integration")
   }
 
-  firebase.auth().onAuthStateChanged(firebaseUser => {
-    if (firebaseUser) {
-      console.log(firebaseUser);
-      // goToPurchase();
-    }else{
-      console.log('not logged in');
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      return goToIntegration()
+    } catch (error) {
+      window.alert(error.message)
     }
-  })
+  }
 
+ 
   return (
     <>
       <Header />
@@ -54,7 +49,7 @@ function LoginPage() {
           <TextField
             value={email}
             onChange={(event) => {
-                setEmail(event.target.value);
+              setEmail(event.target.value);
             }}
             name="email"
             id="email"
@@ -68,11 +63,8 @@ function LoginPage() {
           <TextField
             value={password}
             onChange={(event) => {
-                setPassword(event.target.value);
+              setPassword(event.target.value);
             }}
-            // onBlur={validarCampos}
-            // error={!erros.password.valido}
-            // helperText={erros.password.texto}
             name="password"
             id="password"
             label="Senha"
@@ -82,21 +74,20 @@ function LoginPage() {
             fullWidth
             required
           />
-          <Box  mt={2} mb={2}>
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Entrar
+          <Box mt={2} mb={2}>
+            <Button type="submit" variant="contained" color="primary" fullWidth >
+              Entrar
           </Button>
           </Box>
-          
 
         </form>
-        <Grid container margin="normal">
-          <Grid item alignContent="space-around">
+        <Grid  margin="normal">
+          <Box>
             <Typography component="span" variant="h6">Ainda não tem o Cashback OBoticario? </Typography>
             <Link href="#" onClick={goToAccount} variant="h6">
               {"Cadastre-se"}
             </Link>
-          </Grid>
+          </Box>
         </Grid>
       </Container>
     </>

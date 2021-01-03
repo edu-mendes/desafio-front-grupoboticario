@@ -5,6 +5,9 @@ import {
     Button
 } from "@material-ui/core";
 import axios from "axios";
+import firebase from 'firebase/app';
+import "firebase/auth";
+import "firebase/firestore";
 
 
 const API_URL = 'http://localhost:3001';
@@ -17,16 +20,20 @@ function PersonalInformation({ submitData }) {
     const [cpf, setCpf] = useState("");
     const [nickname, setNickname] = useState("");
 
+    const user = firebase.auth().currentUser;
+
+
     const createUser = async () => {
 
         const userInformation = {
             name,
             cpf,
-            nickname
+            nickname,
+            email: user.email,
+            uid: user.uid
         }
         try{
             await axios.post(USERS_URL, userInformation)
-            console.log("Okay!!!")
         }catch (e){
             window.alert("Error: Unable to register user.")
         }
@@ -50,7 +57,10 @@ function PersonalInformation({ submitData }) {
                     id="name"
                     variant="outlined"
                     margin="normal"
+                    type="text"
+                    pattern={"[A-Za-zÁÃÀÂÉÊÍÓÔÚáãàâéêíóôú ]{3,}"}
                     fullWidth
+                    required
                 />
 
                 <TextField
@@ -58,15 +68,14 @@ function PersonalInformation({ submitData }) {
                     onChange={(event) => {
                         setCpf(event.target.value)
                     }}
-                    // onBlur={validarCampos}
-                    // name="cpf"
-                    // error={!erros.cpf.valido}
-                    // helperText={erros.cpf.texto}
                     label="CPF"
                     id="cpf"
                     variant="outlined"
                     margin="normal"
+                    type="number"
                     fullWidth
+                    required
+                    maxLength="11" 
                 />
 
                 <TextField
@@ -80,12 +89,13 @@ function PersonalInformation({ submitData }) {
                     variant="outlined"
                     margin="normal"
                     fullWidth
+                    required
                 />
 
                 <Box mt={2} mb={2}>
                     <Button type="submit" variant="contained" color="primary" fullWidth>
                         Cadastrar Compra
-                        </Button>
+                    </Button>
                 </Box>
 
             </form>

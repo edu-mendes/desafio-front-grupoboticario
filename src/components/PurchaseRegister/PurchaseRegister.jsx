@@ -4,13 +4,13 @@ import {
     Box,
     Button
 } from "@material-ui/core";
-// import { useHistory } from "react-router-dom";
 import axios from "axios";
-
+import firebase from 'firebase/app';
+import "firebase/auth";
+import "firebase/firestore";
 
 const API_URL = 'http://localhost:3001';
 const PURCHASE_URL = `${API_URL}/purchase`;
-
 
 
 function PurchaseRegister({ submitData }) {
@@ -20,22 +20,36 @@ function PurchaseRegister({ submitData }) {
     const [price, setPrice] = useState("");
     const [purchaseDate, setPurchaseDate] = useState("");
     
-    // const history = useHistory();
+    
+    const user = firebase.auth().currentUser;
+    
+    let percentage 
 
-    // const goToRegister = () => {
-    //     history.push("/register")
-    // }
+    const calculatePercentage = () =>{
+        if(price < 100){
+            percentage = 0.03
+        }if(price >= 100 & price < 500) {
+            percentage = 0.05
+        }if(price >= 500 ){
+            percentage = 0.07
+        }
+    }
+
+    const things = ['Em Validação', 'Reprovado', 'Aprovado'];
+    const thing = things[Math.floor(Math.random()*things.length)];
 
     const registerNewPurchase = async () => {
 
         const PurchaseInformation = {
             code,
             price,
-            purchaseDate
+            purchaseDate,
+            uidPurchase: user.uid,
+            percentageCashback: percentage,
+            status: thing,
         }
         try{
             await axios.post(PURCHASE_URL, PurchaseInformation)
-            console.log("Okay!!!")
         }catch (e){
             window.alert("Error: Unable to register user.")
         }
@@ -46,6 +60,7 @@ function PurchaseRegister({ submitData }) {
             <form onSubmit={(event) => {
                 event.preventDefault();
                     submitData({ code, price, purchaseDate });
+                    calculatePercentage()
                     registerNewPurchase();
             }}
             >
@@ -59,7 +74,9 @@ function PurchaseRegister({ submitData }) {
                     id="code"
                     variant="outlined"
                     margin="normal"
+                    type="number"
                     fullWidth
+                    required
                 />
 
                 <TextField
@@ -67,15 +84,13 @@ function PurchaseRegister({ submitData }) {
                     onChange={(event) => {
                         setPrice(event.target.value)
                     }}
-                    // onBlur={validarCampos}
-                    // name="cpf"
-                    // error={!erros.cpf.valido}
-                    // helperText={erros.cpf.texto}
                     label="Valor da Compra"
-                    id="cpf"
+                    id="price"
                     variant="outlined"
                     margin="normal"
+                    type="number"
                     fullWidth
+                    required
                 />
 
                 <TextField
@@ -89,7 +104,9 @@ function PurchaseRegister({ submitData }) {
                     type="text"
                     variant="outlined"
                     margin="normal"
+                    pattern="^([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})$"
                     fullWidth
+                    required
                 />
                 <Box mt={2} mb={2}>
                     <Button type="submit" variant="contained" color="primary" fullWidth>
