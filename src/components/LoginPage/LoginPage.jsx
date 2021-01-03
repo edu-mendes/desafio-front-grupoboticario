@@ -15,7 +15,6 @@ import "firebase/auth";
 import "firebase/firestore";
 
 
-
 function LoginPage() {
 
   const [email, setEmail] = useState("");
@@ -36,20 +35,11 @@ function LoginPage() {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       return goToIntegration()
     } catch (error) {
-      console.log(error.message)
+      window.alert(error.message)
     }
   }
 
-  firebase.auth().onAuthStateChanged(firebaseUser => {
-    if (firebaseUser) {
-      console.log("login")
-    } else {
-      console.log('not logged in');
-    }
-  })
-
-
-
+ 
   return (
     <>
       <Header />
@@ -75,9 +65,6 @@ function LoginPage() {
             onChange={(event) => {
               setPassword(event.target.value);
             }}
-            // onBlur={validarCampos}
-            // error={!erros.password.valido}
-            // helperText={erros.password.texto}
             name="password"
             id="password"
             label="Senha"
@@ -88,20 +75,19 @@ function LoginPage() {
             required
           />
           <Box mt={2} mb={2}>
-            <Button type="submit" variant="contained" color="primary" fullWidth>
+            <Button type="submit" variant="contained" color="primary" fullWidth >
               Entrar
           </Button>
           </Box>
 
-
         </form>
-        <Grid container margin="normal">
-          <Grid item alignContent="space-around">
+        <Grid  margin="normal">
+          <Box>
             <Typography component="span" variant="h6">Ainda não tem o Cashback OBoticario? </Typography>
             <Link href="#" onClick={goToAccount} variant="h6">
               {"Cadastre-se"}
             </Link>
-          </Grid>
+          </Box>
         </Grid>
       </Container>
     </>

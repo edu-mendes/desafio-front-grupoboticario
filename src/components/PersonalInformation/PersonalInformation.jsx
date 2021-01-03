@@ -34,7 +34,6 @@ function PersonalInformation({ submitData }) {
         }
         try{
             await axios.post(USERS_URL, userInformation)
-            console.log("Okay!!!")
         }catch (e){
             window.alert("Error: Unable to register user.")
         }
@@ -58,7 +57,10 @@ function PersonalInformation({ submitData }) {
                     id="name"
                     variant="outlined"
                     margin="normal"
+                    type="text"
+                    pattern={"[A-Za-zÁÃÀÂÉÊÍÓÔÚáãàâéêíóôú ]{3,}"}
                     fullWidth
+                    required
                 />
 
                 <TextField
@@ -66,15 +68,14 @@ function PersonalInformation({ submitData }) {
                     onChange={(event) => {
                         setCpf(event.target.value)
                     }}
-                    // onBlur={validarCampos}
-                    // name="cpf"
-                    // error={!erros.cpf.valido}
-                    // helperText={erros.cpf.texto}
                     label="CPF"
                     id="cpf"
                     variant="outlined"
                     margin="normal"
+                    type="number"
                     fullWidth
+                    required
+                    maxLength="11" 
                 />
 
                 <TextField
@@ -88,6 +89,7 @@ function PersonalInformation({ submitData }) {
                     variant="outlined"
                     margin="normal"
                     fullWidth
+                    required
                 />
 
                 <Box mt={2} mb={2}>

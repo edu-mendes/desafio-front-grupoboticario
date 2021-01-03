@@ -46,8 +46,6 @@ const Header = () => {
   firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
       setAuthorization(true)
-    } else {
-      console.log('not logged in');
     }
   })
 

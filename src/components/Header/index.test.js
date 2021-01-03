@@ -1,13 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import React from "react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import LoginPage from ".";
 import firebase from 'firebase/app'
 import "firebase/auth";
 import "firebase/firestore";
+import Header from ".";
 
 // Your web app's Firebase configuration
-export const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyB1mtFwH202nhEelfZx9pvcTGlkssh8Z4k",
   authDomain: "desafio-app-d347c.firebaseapp.com",
   projectId: "desafio-app-d347c",
@@ -18,10 +18,13 @@ export const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
+describe('Componente principal', () => {
+
+    describe('Ao entrar no app', () => {
+        it('o nome é exibido no Header', () => {
+            render(<Header />)
+            expect(screen.getByText('Cashback')).toBeInTheDocument();
+        });
+    })
+});

@@ -9,10 +9,8 @@ import firebase from 'firebase/app';
 import "firebase/auth";
 import "firebase/firestore";
 
-
 const API_URL = 'http://localhost:3001';
 const PURCHASE_URL = `${API_URL}/purchase`;
-
 
 
 function PurchaseRegister({ submitData }) {
@@ -52,7 +50,6 @@ function PurchaseRegister({ submitData }) {
         }
         try{
             await axios.post(PURCHASE_URL, PurchaseInformation)
-            console.log("Okay!!!")
         }catch (e){
             window.alert("Error: Unable to register user.")
         }
@@ -77,7 +74,9 @@ function PurchaseRegister({ submitData }) {
                     id="code"
                     variant="outlined"
                     margin="normal"
+                    type="number"
                     fullWidth
+                    required
                 />
 
                 <TextField
@@ -85,15 +84,13 @@ function PurchaseRegister({ submitData }) {
                     onChange={(event) => {
                         setPrice(event.target.value)
                     }}
-                    // onBlur={validarCampos}
-                    // name="cpf"
-                    // error={!erros.cpf.valido}
-                    // helperText={erros.cpf.texto}
                     label="Valor da Compra"
-                    id="cpf"
+                    id="price"
                     variant="outlined"
                     margin="normal"
+                    type="number"
                     fullWidth
+                    required
                 />
 
                 <TextField
@@ -107,7 +104,9 @@ function PurchaseRegister({ submitData }) {
                     type="text"
                     variant="outlined"
                     margin="normal"
+                    pattern="^([0]?[1-9]|[1|2][0-9]|[3][0|1])[./-]([0]?[1-9]|[1][0-2])[./-]([0-9]{4}|[0-9]{2})$"
                     fullWidth
+                    required
                 />
                 <Box mt={2} mb={2}>
                     <Button type="submit" variant="contained" color="primary" fullWidth>

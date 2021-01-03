@@ -28,19 +28,8 @@ function IntegrationPage({ executeNewData }) {
         <PurchaseListing submitData={dataPages} handleBack={handleBack} />
     ];
 
-    // fetch(USERS_URL)
-    //     .then(response => response.json())
-    //     .then(json => json.map(js => {
-    //         if(js.email === user.email){
-    //             handleSkip()
-    //         }
-    //     })
-    //     )
-
-
     function onSubmitData(data) {
         executeNewData = { ...data }
-        console.log(executeNewData)
     }
 
     useEffect(() => {

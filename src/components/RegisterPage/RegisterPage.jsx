@@ -36,7 +36,7 @@ function RegisterPage() {
             await firebase.auth().createUserWithEmailAndPassword(email, password);
             return goToIntegration()
         } catch (error) {
-            console.log(error.messege)
+            window.alert(error.messege)
         }
     }
 
@@ -66,9 +66,6 @@ function RegisterPage() {
                         onChange={(event) => {
                             setPassword(event.target.value);
                         }}
-                        // onBlur={validarCampos}
-                        // error={!erros.senha.valido}
-                        // helperText={erros.senha.texto}
                         name="password"
                         id="password"
                         label="Senha"
@@ -84,13 +81,13 @@ function RegisterPage() {
                     </Button>
                     </Box>
 
-                    <Grid container>
-                        <Grid item alignContent="space-around">
+                    <Grid margin="normal">
+                        <Box>
                             <Typography component="span" variant="h6">Já tem Conta? </Typography>
                             <Link href="#" onClick={goToLoginPage} variant="h6">
                                 {" Faça login"}
                             </Link>
-                        </Grid>
+                        </Box>
                     </Grid>
                 </form>
             </Container>

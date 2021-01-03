@@ -69,8 +69,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-
-
 function PurchaseListing({ handleBack }) {
 
     const [fetchUser, setFetchUser] = useState([]);
@@ -90,8 +88,6 @@ function PurchaseListing({ handleBack }) {
         loadDataUsers();
     }, []);
 
-    console.log(fetchUser)
-
     const loadDataPurchase = async () => {
         const response = await fetch(`${PURCHASE_URL}?uidPurchase=${user.uid}`)
         const data = await response.json()
@@ -101,8 +97,6 @@ function PurchaseListing({ handleBack }) {
     useEffect(() => {
         loadDataPurchase();
     }, []);
-
-    console.log(fetchPurchase)
 
     return (
         <Grid
