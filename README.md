@@ -1,70 +1,99 @@
-# Getting Started with Create React App
+# Desafio Frontend - Grupo O Boticário 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Indice
 
-## Available Scripts
+- :rocket: [Sobre o Projeto](##rocket-sobre-o-projeto)
+- 👨‍💻️ [Tecnogias utilizadas](##%EF%B8%8F-tecnogias-utilizadas)
+- 📦️ [Como utilizar o projeto](##%EF%B8%8F-como-utilizar-o-projeto)
+- 🤔️ [Como contribuir](#%EF%B8%8F-como-contribuir)
+- :dash: [Deploy da Aplicação](###dash-Deploy-da-Aplicação)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## :rocket:Sobre o Projeto
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+A proposta desse desafio é desenvolver uma aplicação de Cashback, onde o valor será disponibilizado como crédito para a próxima compra da revendedor(a) no Boticário, onde nos comunicamos com uma fake api, para cadastro de usuarios e de compras.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Este projeto de Front-end Web foi desenvolvido em ReactJS com JavaScript.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
+## 👨‍💻️Tecnogias utilizadas
 
-### `npm run build`
+O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [ReactJS](https://reactjs.org/)
+- [JavaScript](https://www.javascript.com/)
+- [Firebase](https://firebase.google.com/)
+- [JSONPlaceholder](https://jsonplaceholder.typicode.com/)
+---
+### Dependências
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [React Router DOM](https://github.com/ReactTraining/react-router#readme)
+- [Material-UI](https://material-ui.com/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/)
+---
 
-### `npm run eject`
+### IDE
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [Visual Studio Code](https://code.visualstudio.com/)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📦️ Como utilizar o projeto
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Para copiar o projeto, utilize os comandos:
 
-## Learn More
+```bash
+  # Clonar o repositório
+  ❯ https://github.com/eduardomendesnorberto/desafio-front-grupoboticario
+  # Entrar no diretório
+  ❯ cd desafio-front-grupoboticario
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Para instalar as dependências e iniciar o projeto, com NPM:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+  # Instalar as dependências
+  ❯ npm install
+  # Iniciar o projeto
+  ❯ npm start
+```
 
-### Code Splitting
+Para executar o Banco de Dados:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+  # Executar o banco de dados
+  ❯ npm run backend
+  # Base de dados ativa
+```
+---
+Para executar os testes
+```bash
+# Para executar os testes 
+> npm test
+```
+---
 
-### Analyzing the Bundle Size
+### :heavy_check_mark: Status do Projeto: Concluído 
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### :dash: Deploy da Aplicação com Desafio-Front: 
 
-### Making a Progressive Web App
+> https://desafio-app-d347c.web.app/
+---
+## Licença :floppy_disk:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+The [MIT License]() (MIT)
 
-### Advanced Configuration
+Copyright :copyright: 2021
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
+## Autor
 
-### Deployment
+Feito com ❤️ Eduardo Mendes Norberto 👋🏽 <a href="mailto:eduardomendesnorberto@outlook.com">Entre em contato!</a>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

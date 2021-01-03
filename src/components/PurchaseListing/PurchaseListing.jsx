@@ -132,12 +132,12 @@ function PurchaseListing({ handleBack }) {
                 <Grid item xs={12}>
                     <Paper className={classes.paper}>
                         <Typography component="h2" variant="h6" color="primary" gutterBottom>Compras Cadastradas</Typography>
-                        <Table size="small">
+                        <Table size="medium">
                             <TableHead>
                                 <TableRow>
                                     <TableCell><strong>Código</strong></TableCell>
                                     <TableCell><strong>Valor</strong></TableCell>
-                                    <TableCell><strong>Data&nbsp;&nbsp;</strong></TableCell>
+                                    <TableCell padding="checkbox"><strong>Data&nbsp;&nbsp;</strong></TableCell>
                                     <TableCell><strong>% de Cashback</strong></TableCell>
                                     <TableCell><strong>Valor do Cashback</strong></TableCell>
                                     <TableCell align="right"><strong>Status</strong></TableCell>
@@ -148,10 +148,10 @@ function PurchaseListing({ handleBack }) {
                                     <TableRow key={row.id}>
                                         <TableCell>{row.code}</TableCell>
                                         <TableCell>{Number(row.price).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</TableCell>
-                                        <TableCell>{row.purchaseDate}</TableCell>
+                                        <TableCell align="center">{row.purchaseDate}</TableCell>
                                         <TableCell>{Math.floor(row.percentageCashback * 100)}%</TableCell>
                                         <TableCell>{(Number(row.price) * row.percentageCashback).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}</TableCell>
-                                        <TableCell align="right">{row.status}</TableCell>
+                                        <TableCell align="center">{row.status}</TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>
